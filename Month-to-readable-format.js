@@ -5,7 +5,7 @@ var t = new Date(),
 	hours = t.getHours(),
 	minutes = t.getMinutes();
 	
-	// when day is single integer ad "0" before it
+	// when day is a single integer add "0" before it
 	if(day <10) {
 		day = '0'+day;
 	}
