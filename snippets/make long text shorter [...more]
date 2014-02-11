@@ -1,0 +1,29 @@
+function truncateParagraph(thetextLength) {
+
+    var textLength = parseInt(thetextLength);
+
+    $('#synonyms p').each(function () {
+        var ptext = $(this).text();
+        ptext = ptext.replace(/\s+/g, ' ');
+        
+        if (ptext.length > textLength) {
+            var short_text = ptext.substring(0, textLength),
+            short_text = short_text.substring(0, Math.min(short_text.length, short_text.lastIndexOf(" "))),
+            long_text = ptext.substring(short_text.length);
+            $(this).html(short_text + "<a href='#' class='more'> [ ...more ]</a>" + "<span class='long-text hidden'>" + long_text + "</span>" + "<a href='#' class='less hidden'> [ ...less ]</a>");
+        }
+    });
+
+    $('.more').click(function(event) {
+        event.preventDefault();
+        $(this).addClass('hidden').next().removeClass('hidden');
+        $('.less').removeClass('hidden');
+    });
+    
+    $('.less').click(function(event) {
+        event.preventDefault();
+        $(this).addClass('hidden').prev().addClass('hidden');
+        $('.more').removeClass('hidden');
+    });
+    
+}
